@@ -10,7 +10,7 @@
 ![Docker](https://img.shields.io/badge/docker-ready-blue?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)
 
-**[🚀 Quick Start](#-quick-start--60-seconds-to-your-first-result) · [🌱 Beginner Guide](#-beginner-guide--read-this-and-you-are-a-professional) · [🖥️ Interactive Lab](docs/preview.html) · [📊 Results](#-visual-proof--what-the-data-actually-says) · [📄 Full Paper](#-the-full-paper)**
+**[🚀 Quick Start](#-quick-start--60-seconds-to-your-first-result) · [🌱 Beginner Guide](#-beginner-guide--read-this-and-you-are-a-professional) · [🖥️ Interactive Lab](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/preview.html) · [📊 Results](#-visual-proof--what-the-data-actually-says) · [📄 Full Paper](#-the-full-paper)**
 
 </div>
 
@@ -43,9 +43,9 @@ Reading the pictures in 10 seconds: the green QQQ bar is the lone survivor; the 
 
 ### 🖥️ The interactive lab (what readers see on GitHub Pages)
 
-[![Interactive lab screenshot](docs/assets/preview_screenshot.png)](docs/preview.html)
+[![Interactive lab screenshot](docs/assets/preview_screenshot.png)](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/preview.html)
 
-*Click through to [`docs/preview.html`](docs/preview.html): verdict table, all four charts, 8-step pipeline, plain-words glossary, reproduce commands, and the scored 8-question exam. Verified by automated browser render (720 KB full-page capture above).*
+*Click through to the [live lab](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/preview.html): verdict table, all four charts, 8-step pipeline, plain-words glossary, reproduce commands, and the scored 8-question exam. Verified by automated browser render (720 KB full-page capture above). Raw file mirror: [`docs/preview.html`](docs/preview.html).*
 
 ---
 
@@ -71,7 +71,7 @@ Tests (4 unit tests: look-ahead freedom, PROM ordering, engine holes):
 docker compose --profile test run tests
 ```
 
-Interactive version: open **`docs/preview.html`** in a browser (or publish it via [GitHub Pages](#-github-pages--read-this-repo-as-a-website)) — full results plus a **scored quiz that takes you from zero to professional**.
+Interactive version: open the **live site** — **[interactive lab](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/preview.html)** — full results plus a **scored quiz that takes you from zero to professional**. Prefer the raw file? It is also in the repo at [`docs/preview.html`](docs/preview.html). If one link 404s, see the [Pages section](#-github-pages--read-this-repo-as-a-website) — the mirrors cover both publishing sources.
 
 ---
 
@@ -154,8 +154,8 @@ Open `results/cross_market_patterns.csv`. Columns that matter: `robust` (did it 
 
 **Why no video file is checked in:** GitHub strips inline `<video>` tags in READMEs, so the supported pattern is *thumbnail image linking to hosted video*. When a demo video is published, it will be linked here:
 
-[![Demo walkthrough — thumbnail](docs/assets/wf_verdict.png)](docs/preview.html)
-*▲ Placeholder link today (opens the interactive lab). A recorded MP4/GIF will replace the target without changing this README's layout.*
+[![Demo walkthrough — thumbnail](docs/assets/wf_verdict.png)](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/preview.html)
+*▲ Click to open the live interactive lab. A recorded MP4/GIF will be linked here too without changing this README's layout.*
 
 **Record your own (keeps the demo honest — re-record when results change):**
 
@@ -173,12 +173,39 @@ Full shot list and expected outputs: [`docs/DEMO.md`](docs/DEMO.md).
 
 ## 🌐 GitHub Pages — read this repo as a website
 
-Anyone opening the repo can read it as a polished site instead of raw Markdown:
+Anyone opening the repo can read it as a polished site instead of raw Markdown.
+
+**Setup (once):**
 
 1. Push this folder to GitHub (it is already a complete repo).
-2. On GitHub: **Settings → Pages → Deploy from a branch** → Branch: `main`, Folder: `/docs` → **Save**.
-3. Wait ~1 minute, then open `https://<your-username>.github.io/<repo-name>/preview.html` — the interactive lab with charts and quiz.
-4. Optional: set a custom domain under Settings → Pages → Custom domain (HTTPS is enforced automatically).
+2. On GitHub: **Settings → Pages → Deploy from a branch** → Branch: `main`, Folder: **`/docs`** (recommended) → **Save**.
+3. Wait 1–2 minutes, confirm the Actions run *"pages build and deployment"* is green, then click below.
+
+**Click the lab (each row says when it works):**
+
+| Link | Works when Pages source is… |
+|---|---|
+| [Interactive lab — `/preview.html`](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/preview.html) | **`/docs`** (recommended): serves repo `docs/preview.html` |
+| [Interactive lab — site root `/`](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/) | **`/docs`**: serves repo `docs/index.html`, which redirects to the lab |
+| [Interactive lab — `/docs/preview.html`](https://m0-ar.github.io/pardo-laws-flaws-verification-2026/docs/preview.html) | **`/` (root)**: serves repo `docs/preview.html` verbatim |
+
+Why three links? A green "Deployed" badge only proves *something* built — never that *your path* exists under the configured source. URL paths mirror repo paths **under the chosen source**: with source `/docs`, repo `docs/x.html` serves at `/x.html`; with source `/`, the same file serves at `/docs/x.html`. This repo ships mirrors for both settings (root `preview.html` + root `index.html` redirect, plus `.nojekyll` in both folders so Pages serves everything statically), so **at least two of the three links above resolve no matter which source is selected** — but set `/docs` and all three resolve.
+
+**Diagnose in 10 seconds (no login):**
+
+```bash
+BASE="https://m0-ar.github.io/pardo-laws-flaws-verification-2026"
+for p in "" "preview.html" "docs/preview.html"; do
+  printf "%s -> " "/$p"
+  curl -s -o /dev/null -w "%{http_code}\n" "$BASE/$p"
+done
+```
+
+| `/` | `/preview.html` | `/docs/preview.html` | Meaning |
+|---|---|---|---|
+| 200 | 200 | 404 | source = `/docs` ✅, all good |
+| 200 | 404 | 200 | source = `/` (root); page only under `/docs` — switch source to `/docs` or use the third link |
+| 404 | 404 | 404 | Pages off / still building / wrong branch — check Settings → Pages + Actions runs |
 
 Local check before pushing (verifies the exact file Pages will serve):
 
@@ -187,7 +214,7 @@ python3 -m http.server 8000 --directory docs
 # open http://localhost:8000/preview.html
 ```
 
-Why `/docs`? It keeps the paper (root `README.md`) and the site (`docs/preview.html` + `docs/assets/`) in one branch with zero build step — the simplest Pages setup that cannot break.
+Why `/docs`? It keeps the paper (root `README.md`) and the site (`docs/preview.html` + `docs/assets/`) in one branch with zero build step — the simplest Pages setup that cannot break. Optional: custom domain under Settings → Pages → Custom domain (HTTPS enforced automatically).
 
 ---
 
