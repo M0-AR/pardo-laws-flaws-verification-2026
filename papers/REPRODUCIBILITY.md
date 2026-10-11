@@ -1,5 +1,11 @@
 # Reproducibility log (append-only — newest run on top)
 
+## 2026-10-11 (3) — Pages 404-proofing: mirrors + live-link table, probed 200/200/200
+- Cause of earlier 404: Pages served source `/` while the page lived only at `docs/preview.html` (green "Deployed" proves a build, never your path).
+- Fix: canonical `docs/preview.html` + `docs/index.html` redirect; root `preview.html` mirror (mechanical sed, diff = 4 asset lines `assets/` → `docs/assets/` only, browser-render verified); root `index.html` redirect + fallbacks; `.nojekyll` in both `/` and `/docs`.
+- README: hero + demo + gallery links now absolute Pages URLs; Pages section carries the 3-link table + 10-second probe + meaning matrix.
+- Push `ca0e814` (6 files), Pages rebuilt, probes: `/` → 200, `/preview.html` → 200, `/docs/preview.html` → 200.
+
 ## 2026-10-11 (2) — showcase upgrade: pro README + interactive Pages lab
 - Added: hero + CEO summary + gallery + beginner guide + features + user stories + demo guide + Pages deploy guide (README 141 → 386 lines, all prior paper sections kept verbatim).
 - Added: `docs/preview.html` (zero-dependency interactive lab, 8-question scored quiz) + 4 result charts regenerated from live `results/` via `experiments/make_charts.py` + full-page browser-render screenshot verified (`docs/assets/preview_screenshot.png`, 720 KB) + quiz click-through verified (correct → green + explanation + score).
