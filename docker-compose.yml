@@ -1,0 +1,20 @@
+services:
+  lab:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+      - ./papers:/app/papers
+    environment:
+      - PYTHONPATH=/app/src
+      - MPLBACKEND=Agg
+    command: python experiments/run_all.py --basket spy.us,qqq.us,dia.us,iwm.us,gld.us --years 10 --out results
+  tests:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+    environment:
+      - PYTHONPATH=/app/src
+    command: pytest tests/ -v
+    profiles: ["test"]

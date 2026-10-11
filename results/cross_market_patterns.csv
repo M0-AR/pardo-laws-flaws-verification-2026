@@ -1,0 +1,6 @@
+market,prelim_n,best,oos_net,wfe,robust,tail_net,at_over_cost,regimes
+spy.us,9,"{'ma_len': 20.0, 'ma_lag': 5.0, 'vol_mult': 1.0}",-1736.51,-0.032,False,-1460.35,2.54,"{'uptrend': {'n': 33, 'net': 19193.01}, 'downtrend': {'n': 31, 'net': -5704.49}, 'range': {'n': 47, 'net': 12065.33}}"
+qqq.us,41,"{'ma_len': 20.0, 'ma_lag': 5.0, 'vol_mult': 1.0}",26498.58,0.228,True,6625.99,5.32,"{'uptrend': {'n': 55, 'net': 21459.17}, 'downtrend': {'n': 26, 'net': 35461.28}, 'range': {'n': 79, 'net': 30804.36}}"
+dia.us,8,"{'ma_len': 20.0, 'ma_lag': 5.0, 'vol_mult': 2.5}",-10452.69,-0.221,False,-650.95,999.0,"{'uptrend': {'n': 0, 'net': 0.0}, 'downtrend': {'n': 1, 'net': -1598.66}, 'range': {'n': 0, 'net': 0.0}}"
+iwm.us,37,"{'ma_len': 20.0, 'ma_lag': 5.0, 'vol_mult': 1.5}",-12738.16,-0.167,False,1431.82,7.62,"{'uptrend': {'n': 13, 'net': 2968.77}, 'downtrend': {'n': 17, 'net': -5434.42}, 'range': {'n': 34, 'net': -2022.37}}"
+gld.us,48,"{'ma_len': 40.0, 'ma_lag': 10.0, 'vol_mult': 1.5}",-6740.79,-0.118,False,59.92,1.39,"{'uptrend': {'n': 76, 'net': 31547.89}, 'downtrend': {'n': 76, 'net': -20842.14}, 'range': {'n': 109, 'net': 4901.0}}"
